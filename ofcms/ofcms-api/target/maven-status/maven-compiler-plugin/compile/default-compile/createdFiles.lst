@@ -1,0 +1,8 @@
+com\ofsoft\cms\api\v2\UserApi.class
+com\ofsoft\cms\api\v1\CommentApi.class
+com\ofsoft\cms\api\ApiErrorCodeEx.class
+com\ofsoft\cms\api\ApiBase.class
+com\ofsoft\cms\api\v1\UserApi.class
+com\ofsoft\cms\service\UserService.class
+com\ofsoft\cms\api\v1\BbsApi.class
+com\ofsoft\cms\api\v1\ContentApi.class

@@ -1,0 +1,44 @@
+version: '3.8'
+
+services:
+  ofcms:
+    build: .
+    ports:
+      - "8093:8080"
+    environment:
+      - JAVA_OPTS=-Xms512m -Xmx1024m
+    depends_on:
+      mysql:
+        condition: service_healthy
+    restart: always
+
+  mysql:
+    image: mysql:5.7
+    environment:
+      - MYSQL_DATABASE=ofcms
+      - MYSQL_ROOT_PASSWORD=root
+      - MYSQL_MAX_ALLOWED_PACKET=128M
+      - MYSQL_CHARACTER_SET_SERVER=utf8mb4
+      - MYSQL_COLLATION_SERVER=utf8mb4_unicode_ci
+    volumes:
+      - mysql_data:/var/lib/mysql
+      - ./doc/sql/ofcms-v1.1.3.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "3307:3306"
+    command:
+      - --character-set-server=utf8mb4
+      - --collation-server=utf8mb4_unicode_ci
+      - --init-connect='SET NAMES utf8mb4'
+      - --skip-character-set-client-handshake
+      - --max_allowed_packet=128M
+      - --sql-mode=NO_ENGINE_SUBSTITUTION
+      - --default-authentication-plugin=mysql_native_password
+    healthcheck:
+      test: ["CMD", "mysqladmin", "ping", "-h", "localhost", "-uroot", "-proot"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+    restart: always
+
+volumes:
+  mysql_data:
