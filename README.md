@@ -4,11 +4,15 @@
 
 cd ofcms
 
+mvn clean package -DskipTests
+
 docker-compose up -d
 
-![image-20241207114011155](C:\Users\YMKW\AppData\Roaming\Typora\typora-user-images\image-20241207114011155.png)
+![image-20241207120503428](C:\Users\YMKW\Documents\Scan-Javeweb-daily\image\image-20241207120503428.png)
 
 访问：http://127.0.0.1:8093/admin/login.html
+
+![image-20241207120543518](C:\Users\YMKW\Documents\Scan-Javeweb-daily\image\image-20241207120543518.png)
 
 #### 账号密码
 
